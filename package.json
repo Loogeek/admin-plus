@@ -1,0 +1,19 @@
+{
+  "name": "admin-pro",
+  "version": "0.1.0",
+  "description": "movie and music admin system",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "react",
+    "koa",
+    "puppeteer"
+  ],
+  "author": "Loogeek",
+  "license": "MIT",
+  "dependencies": {
+    "puppeteer": "^1.1.1"
+  }
+}
