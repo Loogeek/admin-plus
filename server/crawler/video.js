@@ -1,5 +1,5 @@
 const puppeteer = require('puppeteer')
-const base = 'https://movie.douban.com/subject'
+const base = 'https://movie.douban.com/subject/'
 const trailerBase = 'https://movie.douban.com/trailer/'
 
 const sleep = time => new Promise(resolve => {
@@ -12,8 +12,9 @@ process.on('message', async (movies) => {
         args: ['--no-sandbox']
     })
     const page = await browser.newPage()
-    movies.forEach(movie => {
-        const doubanId = movie.doubanId
+    
+    for (let i = 0; i < movies.length; i++) {
+        const doubanId = movies[i].doubanId
 
         await page.goto(base + doubanId, {
             waitUntil: 'networkidle2'
@@ -37,6 +38,8 @@ process.on('message', async (movies) => {
             return {}
         })
 
+        let video = ''
+
         if (result.link) {
             await page.goto(result.link, {
                 waitUntil: 'networkidle2'
@@ -46,8 +49,20 @@ process.on('message', async (movies) => {
             video = await page.evaluate(() => {
                 const $ = window.$
                 const it = $('source')
+
+                return it && it.length > 0 ? it.attr('src') : '' 
             })
         }
-    })
 
+        const data = {
+            video,
+            doubanId,
+            cover: result.cover
+        }
+        console.log(11, data)
+        process.send(data)
+    }
+
+    browser.close()
+    process.exit(0)
 })

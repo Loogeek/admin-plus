@@ -1,7 +1,7 @@
 const { resolve } = require('path');
 const puppeteer = require('puppeteer')
 
-const url = 'https://movie.douban.com/tag/%E7%A7%91%E5%B9%BB?start=20&type=R'
+const url = 'https://movie.douban.com/tag/#/?sort=R&range=6,10&tags='
 
 const sleep = time => new Promise(resolve => {
     setTimeout(resolve, time)
@@ -17,23 +17,31 @@ const sleep = time => new Promise(resolve => {
     await page.goto(url, {
         waitUntil: 'networkidle2'
     })
-    await sleep(2000)
+    await sleep(3000)
+    await page.waitForSelector('.more')
+
+    for (let i = 0; i < 1; i++) {
+        await sleep(3000)
+        await page.click('.more')
+    }
 
     const result = await page.evaluate(() => {
         const $ = window.$
-        const items = $('.item')
+        const items = $('.list-wp a')
         let links = []
 
-        if (items.length > 0) {
+        if (items.length) {
             items.each((index, item) => {
                 const it = $(item)
-                const doubanId = it.find('.nbg').attr('href').split('subject/')[1].split('/')[0]
-                const title = $(it.find('.pl2 a')[0]).text().replace(/\n/g, '').replace(/\r/g, '').replace(/\//g, '').trim()
-                const poster = it.find('img').attr('src').replace('s_ratio', 'l_ratio')
+                const doubanId = it.find('div').data('id')
+                const title = it.find('.title').text()
+                const rate = Number(it.find('.rate').text())
+                const poster = it.find('img').attr('src').replace('s_ratio', 'l-ratio')
 
                 links.push({
                     doubanId,
                     title,
+                    rate,
                     poster
                 })
             })
@@ -43,6 +51,7 @@ const sleep = time => new Promise(resolve => {
     })
 
     browser.close()
+
     process.send({result})
     process.exit(0)
 })()
