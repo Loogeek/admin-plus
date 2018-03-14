@@ -16,6 +16,8 @@
   "dependencies": {
     "axios": "^0.18.0",
     "mongoose": "^5.0.9",
-    "puppeteer": "^1.1.1"
+    "nanoid": "^1.0.2",
+    "puppeteer": "^1.1.1",
+    "qiniu": "^7.1.3"
   }
 }
