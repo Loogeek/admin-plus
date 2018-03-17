@@ -4,6 +4,8 @@
   "description": "movie and music admin system",
   "main": "index.js",
   "scripts": {
+    "start": "node server/index.js",
+    "build": "rm -rf parcel/dist && parcel build parcel/index.html --no-cache -d parcel/dist --public-url /dist/",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
@@ -15,6 +17,9 @@
   "license": "MIT",
   "dependencies": {
     "axios": "^0.18.0",
+    "bcrypt": "^1.0.3",
+    "glob": "^7.1.2",
+    "koa": "^2.5.0",
     "mongoose": "^5.0.9",
     "nanoid": "^1.0.2",
     "puppeteer": "^1.1.1",

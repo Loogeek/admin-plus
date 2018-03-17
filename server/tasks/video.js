@@ -25,10 +25,6 @@ const { resolve } = require('path')
 
     child.on('message', data => {
         const { doubanId } = data
-        // result.forEach(async (item) => {
-        //     // const movie = await Movie
-
-        // })
 
         console.log(11, data)
 
