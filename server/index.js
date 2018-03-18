@@ -10,7 +10,10 @@ const { connect, initSchemas, initAdmin } = require('./database/init')
 
     await initAdmin()
 
-    require('./tasks/movie')
+    // require('./tasks/movie')
+    // require('./tasks/api')
+    // require('./tasks/video')
+    require('./tasks/qiniu')
 })()
 
 const app = new Koa()
