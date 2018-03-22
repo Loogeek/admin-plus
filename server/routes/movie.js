@@ -1,5 +1,12 @@
-const { controller, get } = require('../lib/decorator')
-const { getAllMovies, getMovieDetail, getRelativeMovies } = require('../service/movie')
+const { 
+    controller, 
+    get 
+} = require('../lib/decorator')
+const { 
+    getAllMovies, 
+    getMovieDetail, 
+    getRelativeMovies 
+} = require('../service/movie')
 
 @controller('/api/v1/movies')
 export class movieController {
@@ -19,9 +26,9 @@ export class movieController {
     }
 
     @get('/:id')
-    async getMoiveDetail(ctx, next) {
+    async getMovieDetail(ctx, next) {
         const { id } = ctx.params
-        const movie = await this.getMoiveDetail(id)
+        const movie = await getMovieDetail(id)
         const relativeMovies = await getRelativeMovies(movie)
 
         ctx.body = {

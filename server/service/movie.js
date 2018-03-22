@@ -20,7 +20,7 @@ export const getAllMovies = async (type, year) => {
 }
 
 export const getMovieDetail = async id => {
-    const movie = await Movie.findOne({_id: id})
+    const movie = await Movie.findOne({doubanId: id})
 
     return movie
 }
