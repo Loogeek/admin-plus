@@ -8,22 +8,23 @@ import {
   Route,
   Switch
 } from 'react-router-dom'
-// import './assets/common.sass'
+import './assets/scss/common.scss'
 
 const rootElement = document.getElementById('app')
 
 render(
-  <div>
-      <Nav />
-      <BrowserRouter>
-          <Switch>
-            {
-              routes.map(({ name, path, exact = true, component }) =>(
-                <Route path={path} exact={exact} component={component} key={name} />        
-              ))
-            }
-          </Switch>
-      </BrowserRouter>
+  <div style={{position: 'relative'}} className="full">
+      <Nav>
+          <BrowserRouter>
+              <Switch>
+                {
+                  routes.map(({ name, path, exact = true, component }) =>(
+                    <Route path={path} exact={exact} component={component} key={name} />        
+                  ))
+                }
+              </Switch>
+          </BrowserRouter>
+      </Nav>
   </div>,
   rootElement
 )

@@ -13,10 +13,11 @@ export default class Nav extends Component {
     }
 
     render() {
+        const { children } = this.props
         const { currentNav } = this.state
 
         return (
-            <div>            
+            <div className="full">            
                 <Menu
                     onClick={this.handleSelectNav}
                     selectedKeys={[currentNav]}
@@ -45,25 +46,28 @@ export default class Nav extends Component {
                         )
                     }
                 </Menu>
-                <Menu
-                    defaultSelectedKeys={['1']}
-                    defaultOpenKeys={['sub1']}
-                    mode="inline"
-                    theme="dark"
-                    style={{
-                        width: '215px',
-                        fontSize: 18,
-                        paddingLeft: 24
-                    }}
-                >
-                    {
-                        movieYears.map(year => 
-                            <Menu.Item key={year}>
-                                { `${year}上映` }
-                            </Menu.Item>
-                        )
-                    }
-                </Menu>
+                <div className="flex-row full">                
+                    <Menu
+                        defaultSelectedKeys={['1']}
+                        defaultOpenKeys={['sub1']}
+                        mode="inline"
+                        style={{
+                            width: '215px',
+                            fontSize: 18,
+                            paddingLeft: 24,
+                            height: '100%'
+                        }}
+                    >
+                        {
+                            movieYears.map(year => 
+                                <Menu.Item key={year}>
+                                    { `${year}上映` }
+                                </Menu.Item>
+                            )
+                        }
+                    </Menu>
+                    { children }
+                </div>
             </div>
         )
     }
