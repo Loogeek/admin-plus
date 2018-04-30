@@ -4,7 +4,8 @@
   "description": "movie and music admin system",
   "main": "index.js",
   "scripts": {
-    "start": "rm -rf dist && rm -rf .cache && NODE_ENV=development nodemon ./start.js",
+    "start": "rm -rf dist && rm -rf .cache && NODE_ENV=development nodemon --inspect ./start.js",
+    "debug": "node ./server/tasks/music/index.js",
     "build": "rm -rf parcel/dist && parcel build parcel/index.html --no-cache -d parcel/dist --public-url /dist/",
     "test": "echo \"Error: no test specified\" && exit 1"
   },

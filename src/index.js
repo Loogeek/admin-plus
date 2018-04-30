@@ -8,7 +8,7 @@ import {
   Route,
   Switch
 } from 'react-router-dom'
-import './assets/scss/common.scss'
+// import './assets/scss/common.scss'
 
 const rootElement = document.getElementById('app')
 

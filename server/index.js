@@ -4,6 +4,7 @@ const R = require('ramda')
 const { resolve } = require('path')
 const { connect, initSchemas, initAdmin } = require('./database/init')
 const MIDDLEWARES = ['router', 'parcel']
+const port = process.env.PORT || 9527
 
 const useMiddlewares = app => {
     R.map(
@@ -29,14 +30,9 @@ const useMiddlewares = app => {
 
     await initAdmin()
 
-    // require('./tasks/movie')
-    // require('./tasks/api')
-    // require('./tasks/video')
-    // require('./tasks/qiniu')
-
     const app = new Koa()
     await useMiddlewares(app)
     
 
-    app.listen(9527)
+    app.listen(port)
 })()

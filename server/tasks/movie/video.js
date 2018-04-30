@@ -12,7 +12,7 @@ const Category = mongoose.model('Category')
         ]    
     })
 
-    const script = resolve(__dirname, '../crawler/video')
+    const script = resolve(__dirname, '../../crawler/video')
     const child = cp.fork(script, [])
     let invoked = false
 

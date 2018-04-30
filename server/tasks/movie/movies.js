@@ -4,10 +4,10 @@ const mongoose = require('mongoose')
 const Movie = mongoose.model('Movie')
 
 ;(async () => {
-    const script = resolve(__dirname, '../crawler/movie-list')
+    const script = resolve(__dirname, '../../crawler/movie-list')
     const child = cp.fork(script, [])
     let invoked = false
-
+    
     child.on('error', err => {
         if (invoked) return
 

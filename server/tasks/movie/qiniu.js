@@ -1,6 +1,6 @@
 const qiniu = require('qiniu')
 const nanoid = require('nanoid')
-const config = require('../config')
+const config = require('../../config')
 const mongoose = require('mongoose')
 const Movie = mongoose.model('Movie')
 
@@ -57,8 +57,6 @@ const uploadToQiniu = async(url, key) => {
                 if (coverData.key) {
                     movie.coverKey = coverData.key
                 }
-
-                console.log(movie)
 
                 await movie.save()
             } catch (error) {
