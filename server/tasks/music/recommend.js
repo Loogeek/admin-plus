@@ -31,16 +31,27 @@ const Recommend = mongoose.model('Recommend')
         if (!recommend) {
            recommend = new Recommend({
                name: 'recommend',
-               slider: result
+               slider: result.slider || [],
+               recommendList: result.recommendList || []
            }) 
         } else {
-            let { slider } = recommend
+            let { slider, recommendList } = recommend
+            const resSlider = result.slider
+            const resRecommendList = result.recommendList
             
-            result.forEach(async item => {
+            resSlider.forEach(async item => {
                 const noData = slider.every(target => item.picUrl !== target.picUrl)
                 
                 if (noData) {
                     slider.push(item)     
+                }
+            })
+
+            resRecommendList.forEach(async item => {
+                const noData = recommendList.every(target => item.dissid !== target.dissid)
+                
+                if (noData) {
+                    recommendList.push(item)     
                 }
             })
         }

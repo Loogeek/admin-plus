@@ -11,6 +11,17 @@ const recommendSchema = new Schema({
             picUrl: String
         }
     ],
+    recommendList: [
+        {
+            id: ObjectId,
+            dissid: String,
+            imgurl: String,
+            dissname: String,
+            creator: {
+                name: String
+            }
+        }
+    ],
     meta: {
         createdAt: {
             type: Date,

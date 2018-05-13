@@ -3,7 +3,8 @@ const {
     get 
 } = require('../../lib/decorator')
 const { 
-    getRecommendSlider 
+    getRecommendSlider,
+    getRecommendList,
 } = require('../../service/music/recommend')
 
 @controller('/api/v1/music')
@@ -13,9 +14,19 @@ export class musicController {
         const { slider } = await getRecommendSlider()
 
         ctx.body = {
-            data: {
-                slider
-            },
+            slider,
+            success: true,
+            mes: '',
+            code: 0
+        }
+    }
+
+    @get('/recommendList')
+    async getRecommendList(ctx, next) {
+        const { recommendList } = await getRecommendList()
+
+        ctx.body = {
+            recommendList,
             success: true,
             mes: '',
             code: 0
